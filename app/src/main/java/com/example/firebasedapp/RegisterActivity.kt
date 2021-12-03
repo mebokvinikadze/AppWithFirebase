@@ -121,7 +121,7 @@ class RegisterActivity : AppCompatActivity() {
     // extension function to validate password rules/patterns
     fun isValidPassword(password: String?): Boolean {
         password?.let {
-            val passwordPattern = "(?=.*[a-z])"
+            val passwordPattern = "(?=.*[a-z])(?=.*[0-9])"
             val passwordMatcher = Regex(passwordPattern)
             return passwordMatcher.find(password) != null
         } ?: return false

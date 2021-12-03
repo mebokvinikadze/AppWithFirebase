@@ -69,19 +69,19 @@ class RegisterActivity : AppCompatActivity() {
 
     fun validateInput(): Boolean {
 
-        // checking is email isn't empty
+        // checking if email isn't empty
         if (editTextEmail.text.toString().equals("")) {
             editTextEmail.setError("Please Enter Email")
             return false
         }
 
-        // checking is password isn't empty
+        // checking if password isn't empty
         if (editTextPassword.text.toString().equals("")) {
             editTextPassword.setError("Please Enter Password")
             return false
         }
 
-        // checking is password isn't empty
+        // checking if password isn't empty
         if (editTextRepeatPassword.text.toString().equals("")) {
             editTextRepeatPassword.setError("Repeat Password")
             return false
@@ -105,7 +105,7 @@ class RegisterActivity : AppCompatActivity() {
             return false
         }
 
-        // Checking if repeat password is same
+        // Checking if repeat password is the same
         if (!editTextRepeatPassword.text.toString().equals(editTextPassword.text.toString())) {
             editTextRepeatPassword.setError("Password does not match")
             return false

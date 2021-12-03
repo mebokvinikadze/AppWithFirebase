@@ -1,14 +1,13 @@
 package com.example.firebasedapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -17,7 +16,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var editTextRepeatPassword: EditText
     private lateinit var buttonRegister: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -25,7 +23,6 @@ class RegisterActivity : AppCompatActivity() {
         init()
 
         registerListeners()
-
     }
 
     private fun init() {
@@ -33,7 +30,6 @@ class RegisterActivity : AppCompatActivity() {
         editTextPassword = findViewById(R.id.editTextPassword)
         editTextRepeatPassword = findViewById(R.id.editTextRepeatPassword)
         buttonRegister = findViewById(R.id.buttonRegister)
-
     }
 
     private fun registerListeners() {
@@ -42,9 +38,6 @@ class RegisterActivity : AppCompatActivity() {
                 val email = editTextEmail.text.toString()
                 val password = editTextPassword.text.toString()
 
-
-
-
                 FirebaseAuth.getInstance()
                     .createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
@@ -52,15 +45,8 @@ class RegisterActivity : AppCompatActivity() {
                             val intent = Intent(this, ProfileActivity::class.java)
                             startActivity(intent)
                             finish()
-
                         } else {
-                            Toast.makeText(
-                                this,
-                                "This email is already registered!",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-
+                            Toast.makeText(this, "This email is already registered!", Toast.LENGTH_SHORT).show()
                         }
                     }
             }
@@ -124,10 +110,7 @@ class RegisterActivity : AppCompatActivity() {
             val passwordPattern = "(?=.*[a-z])(?=.*[0-9])"
             val passwordMatcher = Regex(passwordPattern)
             return passwordMatcher.find(password) != null
-        } ?: return false
-
+        }
+            ?: return false
     }
-
-
 }
-

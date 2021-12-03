@@ -41,12 +41,8 @@ class RegisterActivity : AppCompatActivity() {
             if (validateInput()) {
                 val email = editTextEmail.text.toString()
                 val password = editTextPassword.text.toString()
-                val repeatPassword = editTextRepeatPassword.text.toString()
 
 
-//            if (email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//                Toast.makeText(this, "Invalid Email Adress", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
 
 
                 FirebaseAuth.getInstance()
@@ -58,7 +54,11 @@ class RegisterActivity : AppCompatActivity() {
                             finish()
 
                         } else {
-                            Toast.makeText(this, "This email is already registered!", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                this,
+                                "This email is already registered!",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
 
                         }
@@ -68,14 +68,20 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun validateInput(): Boolean {
+
+        // checking is email isn't empty
         if (editTextEmail.text.toString().equals("")) {
             editTextEmail.setError("Please Enter Email")
             return false
         }
+
+        // checking is password isn't empty
         if (editTextPassword.text.toString().equals("")) {
             editTextPassword.setError("Please Enter Password")
             return false
         }
+
+        // checking is password isn't empty
         if (editTextRepeatPassword.text.toString().equals("")) {
             editTextRepeatPassword.setError("Repeat Password")
             return false
@@ -93,9 +99,9 @@ class RegisterActivity : AppCompatActivity() {
             return false
         }
 
-        // checking minimum password Length
+        // password must contain
         if (!isValidPassword(editTextPassword.text.toString())) {
-            editTextPassword.setError("Password must Contain a-z, 0-9")
+            editTextPassword.setError("Password must contain a-z , 0-9")
             return false
         }
 
@@ -107,6 +113,7 @@ class RegisterActivity : AppCompatActivity() {
         return true
     }
 
+    // valid email function
     fun isEmailValid(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
